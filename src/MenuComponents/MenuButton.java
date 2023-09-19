@@ -12,8 +12,9 @@ public class MenuButton extends JButton {
         this.setBackground(Color.WHITE);
         this.setMaximumSize(new Dimension(300, 80));
         this.setMinimumSize(new Dimension(300, 80));
-        this.setFont(new Font("Tretton", Font.PLAIN, 36));
-        this.setBorder(BorderFactory.createLineBorder(Color.gray, 2));
+        this.setFont(new Font("VT323", Font.PLAIN, 36));
+        this.setForeground(Color.decode("#6382bf"));
+        this.setBorder(BorderFactory.createLineBorder(Color.decode("#6382bf"), 2));
         this.setFocusable(false);
     }
 }

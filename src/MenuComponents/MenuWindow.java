@@ -1,21 +1,19 @@
-import MenuComponents.Iwindow;
-import MenuComponents.MenuPanel;
-import MenuComponents.ScorePanel;
+package MenuComponents;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame implements Iwindow {
+public class MenuWindow extends JFrame{
     private static boolean isCreated = false;
     private final CardLayout cLayout;
     private final JPanel mainPane;
 
-    private Window(){
+    private MenuWindow(){
         setSize(600,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setIconImage(new ImageIcon("img/virus.png").getImage());
+        setIconImage(new ImageIcon("img/icon.png").getImage());
         setTitle("Anti Plague");
         setResizable(false);
 
@@ -25,11 +23,12 @@ public class Window extends JFrame implements Iwindow {
         isCreated = true;
     }
 
-    public static Window Create(){
+    public static MenuWindow Create(){
         if (isCreated == false){
-            Window window = new  Window();
+            MenuWindow window = new MenuWindow();
             window.mainPane.add("Menu", new MenuPanel(window));
             window.mainPane.add("HighScore", new ScorePanel(window));
+            window.mainPane.add("NewGame", new DifficultyLvlPanel(window));
 
             return window;
         }
@@ -38,8 +37,13 @@ public class Window extends JFrame implements Iwindow {
         }
     }
 
-    @Override
     public void SwitchPanel(String panel) {
         cLayout.show(mainPane, panel);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        this.isCreated = false;
     }
 }
